@@ -1,0 +1,23 @@
+syntax = "proto3";
+package com.example.grpc; // пакет куда будет сгенерирован код
+
+// запрос, который клиент будет посылать серверу
+message HelloRequest{
+
+  string name = 1;
+
+  // repeated - это тоже самое, что и список
+  // будет хранить список строк
+  repeated string hobbies = 2;
+}
+
+// ответ, который сервер будет посылать клиенту
+message HelloResponse{
+  string greeting = 1;
+}
+
+// реализация rpc-метода, который будет вызываться
+service GreetingService{
+  // в этом методе описываем что метод должен принимать и возвращать
+  rpc greeting(HelloRequest) returns (HelloResponse);
+}
